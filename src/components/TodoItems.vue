@@ -22,14 +22,29 @@ import { Icon } from '@iconify/vue';
     <li>
         <input type="checkbox" :checked="todo.isCompleted" @input="$emit('toggle-complete', index)" />
         <div class="todo">
-            <input v-if="todo.isEditing" type="text" :value="todo.todo" @input="$emit('update-todo', $event.target.value, index)" />
+            
+            <input v-if="todo.isEditing" 
+              type="text" 
+              :value="todo.todo" 
+              @input="$emit('update-todo', $event.target.value, index)" 
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+
             <span v-else :class="{'completed-todo' : todo.isCompleted}">{{ todo.todo }}</span>
+
+
+            <br />
+            <div v-if="todo.isCompleted" class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"> Completed </div>
+            <div v-else class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10"> Todo</div>
+
+
         </div>
         <div class="todo-actions">
             <Icon v-if="todo.isEditing" icon="ph:check-circle" class="icon check-icon" color="41b080" width="22" @click="$emit('enable-editing', index)" />
             <Icon v-else icon="ph:pencil-fill" class="icon edit-icon" color="41b080" width="22" @click="$emit('enable-editing', index)" />
             <Icon icon="ph:trash" class="icon trash-icon" color="f95e5e" width="22" @click="$emit('delete-todo', todo)"/>
-        </div>
+        </div>       
+
     </li>
 </template>
 
