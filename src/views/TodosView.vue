@@ -61,7 +61,7 @@
 
 <template>
     <main>
-        <h4>Create Todo</h4>
+        
         <TodoCreator @create-todo="createTodo"/>
 
 
